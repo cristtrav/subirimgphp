@@ -24,7 +24,7 @@
           $archivos = scandir($carpetaDestino); // Traer la lista de archivos dentro de la carpeta de destino
           $nombreArchivoDestino = "img".(count($archivos)-1); // Generar un nombre para el archivo a guardar contando los archivos existentes
           $archivoOrigen = $fileTmpPath."/".$fileName; // Generar la ruta completa del archivo temporal a ser movido
-          $arachivoDestino = $carpetaDestino."/".$nombreArchivoDestino; // Generar la ruta relativa a la en donde sera guardado el archivo
+          $arachivoDestino = $carpetaDestino."/".$nombreArchivoDestino.".".$fileExtension; // Generar la ruta relativa a la en donde sera guardado el archivo
           /* Si se desea mantener el nombre original del archivo utilizar a continuacion:
             if(move_uploaded_file( $fileTmpPath, $fileName)): ?>
           */

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
   </head>
   <body>
     <?php
@@ -12,17 +13,26 @@
       $archivos = array_slice($archivos, 2); // Remover los 2 primeros items que son comodines
       if(count($archivos) == 0): ?>
         <div>Ninguna imágen en la galería.</div>
-      <?php endif;
-      for ($i = 0; $i < count($archivos); $i++): // Recorrer la lista de archivos ?>
-      <a href="<?= $carpetaImagenes ?>/<?= $archivos[$i] ?>">
-        <img width="300" src="<?= $carpetaImagenes //Carpeta de imagenes ?>/<?= $archivos[$i] //nombre del archivo ?>">
-      </a>
+      <?php endif; ?>
 
-      <?php endfor;
-    else: ?>
+      <div class="flex-container">
+
+      <?php for ($i = 0; $i < count($archivos); $i++): // Recorrer la lista de archivos ?>
+            <div>
+              <a href="<?= $carpetaImagenes ?>/<?= $archivos[$i] ?>">
+                <img width="300" src="<?= $carpetaImagenes //Carpeta de imagenes ?>/<?= $archivos[$i] //nombre del archivo ?>">
+              </a>
+              <br />
+              <a href="confirmareliminacion.php?imagen=<?= $archivos[$i] ?>">Eliminar</a>
+            </div>
+      <?php endfor; ?>
+
+    </div>
+
+    <?php else: ?>
       El servidor no tiene permisos para leer la carpeta: <span style="font-weight: boldl"><?= $carpetaImagenes ?></span>
     <?php endif; ?>
-    <form method="post" action="procesoarchivo.php" enctype="multipart/form-data">
+    <form style="margin-left: 10px" method="post" action="procesoarchivo.php" enctype="multipart/form-data">
       <input name="archivo" type="file" />
       <input type="submit" value="Subir" />
     </form>
